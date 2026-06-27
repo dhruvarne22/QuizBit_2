@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class AboutUsScreen extends StatefulWidget {
   const AboutUsScreen({super.key});
@@ -173,11 +174,11 @@ class _AboutUsScreenState extends State<AboutUsScreen>
                 // ============================================
                 // CATEGORIES
                 // ============================================
-                _animated(_sectionLabel("QUIZ CATEGORIES"), delay: 0.38),
-                const SizedBox(height: 10),
-                _animated(_buildCategoriesCard(), delay: 0.4),
+                // _animated(_sectionLabel("QUIZ CATEGORIES"), delay: 0.38),
+                // const SizedBox(height: 10),
+                // _animated(_buildCategoriesCard(), delay: 0.4),
 
-                const SizedBox(height: 28),
+                // const SizedBox(height: 28),
 
                 // ============================================
                 // BUILT WITH
@@ -870,15 +871,14 @@ class _AboutUsScreenState extends State<AboutUsScreen>
           const SizedBox(height: 10),
           Row(
             children: [
-              _socialIcon(Icons.code_rounded, "GitHub"),
+              _socialIcon(Icons.code_rounded, "GitHub", "https://github.com/dhruvarne22"),
+          
               const SizedBox(width: 8),
-              _socialIcon(Icons.alternate_email_rounded, "Twitter"),
+              _socialIcon(Icons.play_circle_fill_rounded, "YouTube", "https://www.youtube.com/c/codewithdhruv"),
               const SizedBox(width: 8),
-              _socialIcon(Icons.play_circle_fill_rounded, "YouTube"),
+              _socialIcon(Icons.business_center_rounded, "LinkedIn", "https://in.linkedin.com/in/dhananjayarne"),
               const SizedBox(width: 8),
-              _socialIcon(Icons.business_center_rounded, "LinkedIn"),
-              const SizedBox(width: 8),
-              _socialIcon(Icons.mail_outline_rounded, "Email"),
+              _socialIcon(Icons.mail_outline_rounded, "Email" ,"http://emailto:codewithdhruv22@gmail.com/"),
             ],
           ),
         ],
@@ -886,18 +886,23 @@ class _AboutUsScreenState extends State<AboutUsScreen>
     );
   }
 
-  Widget _socialIcon(IconData icon, String tooltip) {
+  Widget _socialIcon(IconData icon, String tooltip, String url) {
     return Expanded(
-      child: Tooltip(
-        message: tooltip,
-        child: Container(
-          padding: const EdgeInsets.symmetric(vertical: 10),
-          decoration: BoxDecoration(
-            color: Colors.white.withOpacity(0.08),
-            borderRadius: BorderRadius.circular(10),
-            border: Border.all(color: Colors.white.withOpacity(0.08)),
+      child: GestureDetector(
+        onTap: () async{
+           await  launchUrl(Uri.parse(url));
+        },
+        child: Tooltip(
+          message: tooltip,
+          child: Container(
+            padding: const EdgeInsets.symmetric(vertical: 10),
+            decoration: BoxDecoration(
+              color: Colors.white.withOpacity(0.08),
+              borderRadius: BorderRadius.circular(10),
+              border: Border.all(color: Colors.white.withOpacity(0.08)),
+            ),
+            child: Icon(icon, color: Colors.white, size: 18),
           ),
-          child: Icon(icon, color: Colors.white, size: 18),
         ),
       ),
     );

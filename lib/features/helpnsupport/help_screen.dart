@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class HelpSupportScreen extends StatefulWidget {
   /// Map of FAQ questions to answers.
@@ -11,7 +12,7 @@ class HelpSupportScreen extends StatefulWidget {
   const HelpSupportScreen({
     super.key,
     this.faqs,
-    this.supportEmail = "support@quizbit.app",
+    this.supportEmail = "codewithdhruv22@gmail.com",
   });
 
   // Default FAQ if no map is passed
@@ -150,8 +151,8 @@ class _HelpSupportScreenState extends State<HelpSupportScreen>
               icon: Icons.email_outlined,
               title: "Email",
               subtitle: widget.supportEmail,
-              onTap: () {
-                Navigator.pop(context);
+              onTap: () async{
+               await launchUrl(Uri.parse("emailto:codewithdhruv22@gmail.com"));
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
                     content: Text("Opening email to ${widget.supportEmail}"),
@@ -161,24 +162,24 @@ class _HelpSupportScreenState extends State<HelpSupportScreen>
                 );
               },
             ),
-            const SizedBox(height: 10),
-            _contactOption(
-              icon: Icons.chat_bubble_outline_rounded,
-              title: "Live chat",
-              subtitle: "Mon-Fri, 9 AM - 6 PM IST",
-              onTap: () {
-                Navigator.pop(context);
-              },
-            ),
-            const SizedBox(height: 10),
-            _contactOption(
-              icon: Icons.bug_report_outlined,
-              title: "Report a bug",
-              subtitle: "Help us improve QuizBit",
-              onTap: () {
-                Navigator.pop(context);
-              },
-            ),
+            // const SizedBox(height: 10),
+            // _contactOption(
+            //   icon: Icons.chat_bubble_outline_rounded,
+            //   title: "Live chat",
+            //   subtitle: "Mon-Fri, 9 AM - 6 PM IST",
+            //   onTap: () {
+            //     Navigator.pop(context);
+            //   },
+            // ),
+            // const SizedBox(height: 10),
+            // _contactOption(
+            //   icon: Icons.bug_report_outlined,
+            //   title: "Report a bug",
+            //   subtitle: "Help us improve QuizBit",
+            //   onTap: () {
+            //     Navigator.pop(context);
+            //   },
+            // ),
           ],
         ),
       ),

@@ -44,6 +44,7 @@ class QuizDrawer extends StatelessWidget {
 
     final profileName = ProfileSession.profile?.name ?? "Player";
     final profilePic = ProfileSession.profile?.profile_pic_url;
+    
 
     // Find current rung index for progress
     final currentIndex = prizes.indexOf(que_money);

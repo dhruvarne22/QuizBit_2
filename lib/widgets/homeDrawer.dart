@@ -114,6 +114,7 @@ class HomeDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final profile = ProfileSession.profile;
+
     final isLoggedIn = ProfileSession.isLoggedIn;
 
     return Drawer(
@@ -175,7 +176,7 @@ class HomeDrawer extends StatelessWidget {
                   _DrawerItem(
                     icon: Icons.account_balance_wallet_outlined,
                     label: "Wallet",
-                    trailing: "₹${profile?.money ?? 0}",
+                    trailing: profile  == null ? "Login" : "₹${profile.money}"  ,
                     highlightTrailing: true,
                     onTap: () {
                         SnackbarHelper.showInfo(context, "Feature will come soon.");
